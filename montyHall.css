@@ -1,0 +1,35 @@
+h1 {
+    text-align: center;
+}
+
+/* docs: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+.container{
+    display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
+    flex-direction: row; /* The direction flex items are placed in the flex container */
+    flex-wrap: wrap; /* flex items will wrap onto multiple lines, from top to bottom. */
+    justify-content: space-evenly; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
+    align-items: flex-start; /* The justify content version for the cross axis. */
+
+    /* This property only takes effect on multi-line flexible containers, where flex-flow is set to either wrap or wrap-reverse) */
+    /* align-content: flex-start;   */
+}
+
+.doors{
+    flex-grow: 1; 
+    display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
+    flex-direction: row; /* The direction flex items are placed in the flex container */
+    flex-wrap: wrap; /* flex items will wrap onto multiple lines, from top to bottom. */
+    justify-content: space-evenly; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
+    align-items: flex-start; /* The justify content version for the cross axis. */
+}
+
+.graph{
+    flex-grow: 1.5;/* This defines the ability for a flex item to grow if necessary.  */
+    display: flex;
+    justify-content: center;
+}
+
+img{
+   height: 462px;
+   width: 241px
+}
