@@ -13,10 +13,11 @@ let switchLossCount = 0
 
 let winningDoor = 0
 let losingDoor = 0
+let stayDoor = 0
 
 let carDoorArray = ['door1', 'door2', 'door3']
 let goatDoorArray = ['door1', 'door2', 'door3']
-
+let switchDoorArray = ['door1', 'door2', 'door3']
 
 door1.addEventListener('click', firstDoor)
 door2.addEventListener('click', secondDoor)
@@ -44,7 +45,7 @@ function firstDoor() {
         let goatDoor = goatDoorArray[randomGoatDoor]
         console.log(`The goat is behind ${goatDoor}`)
         //Change door 2 or 3 to have a goat image using 'eval' to work with the string
-        console.log(`Swtiching image of: ${eval(goatDoor)}`)
+        console.log(`Switching image of: ${eval(goatDoor)}`)
         eval(goatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
         //Randomly select the winning door between door 1 and the remaining door 
         carDoorArray.splice(carDoorArray.indexOf(goatDoor), 1)
@@ -60,15 +61,36 @@ function firstDoor() {
         console.log(`The winning door is ${winningDoor}`)
         //Increase click count
         clickCount += 1
+        //Now door 1 is the stay option 
+        stayDoor = 'door1'
+        //The remaining door is the switch option
+        //The swtich option  is not door1 or goatDoor 
+        switchDoorArray.splice(switchDoorArray.indexOf('door1'), 1)
+        switchDoorArray.splice(switchDoorArray.indexOf(goatDoor), 1)
+        console.log(switchDoorArray)
+        switchDoor = switchDoorArray[0]
+        console.log(`The switch door is: ${switchDoor}`)
     } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor === 'door1') {
-        changePicture()
-        clickCount += 1
-        alert('You won!')
+        if (stayDoor = 'door1') {
+            changePicture()
+            clickCount += 1
+            alert('You won by staying!')
+        } else {
+            changePicture()
+            clickCount += 1
+            alert('You won by swtiching!')
+        }
+
     } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor !== "door1") {
-        console.log('hit the loss route')
-        changePicture()
-        clickCount += 1
-        alert('You lost!')
+        if (stayDoor = 'door1') {
+            changePicture()
+            clickCount += 1
+            alert('You lost by staying!')
+        } else {
+            changePicture()
+            clickCount += 1
+            alert('You lost by swtiching!')
+        }
     }
 }
 
@@ -98,14 +120,34 @@ function secondDoor() {
         console.log(`The remaining door that contains a goat is ${losingDoor}`)
         //Increase click count
         clickCount += 1
+        //Now door 1 is the stay option 
+        stayDoor = 'door2'
+        //The remaining door is the switch option
+        //The swtich option  is not door1 or goatDoor 
+        switchDoorArray.splice(switchDoorArray.indexOf('door2'), 1)
+        switchDoorArray.splice(switchDoorArray.indexOf(goatDoor), 1)
+        switchDoor = switchDoorArray[0]
+        console.log(`The swtich door is: ${switchDoor}`)
     } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor === 'door2') {
-        changePicture()
-        clickCount += 1
-        alert('You won!')
+        if (stayDoor = 'door2') {
+            changePicture()
+            clickCount += 1
+            alert('You won by staying!')
+        } else {
+            changePicture()
+            clickCount += 1
+            alert('You won by swtiching!')
+        }
     } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor !== "door2") {
-        changePicture()
-        clickCount += 1
-        alert('You lost!')
+        if (stayDoor = 'door2') {
+            changePicture()
+            clickCount += 1
+            alert('You lost by staying!')
+        } else {
+            changePicture()
+            clickCount += 1
+            alert('You lost by swtiching!')
+        }
     }
 }
 
@@ -135,14 +177,36 @@ function thirdDoor() {
         console.log(`The remaining door that contains a goat is ${losingDoor}`)
         //Increase click count
         clickCount += 1
+        //Now door 1 is the stay option 
+        stayDoor = 'door3'
+        //The remaining door is the switch option
+        //The swtich option  is not door1 or goatDoor 
+        switchDoorArray.splice(switchDoorArray.indexOf('door3'), 1)
+        switchDoorArray.splice(switchDoorArray.indexOf(goatDoor), 1)
+        switchDoor = switchDoorArray[0]
+        console.log(`The swtich door is: ${switchDoor}`)
     } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor === 'door3') {
-        changePicture()
-        clickCount += 1
-        alert('You won!')
+        if (stayDoor = 'door3') {
+            console.log(stayDoor)
+            changePicture()
+            clickCount += 1
+            alert('You won by staying!')
+        } else {
+            changePicture()
+            clickCount += 1
+            alert('You won by swtiching!')
+        }
     } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor !== "door3") {
-        changePicture()
-        clickCount += 1
-        alert('You lost!')
+        if (stayDoor = 'door3') {
+            console.log(stayDoor)
+            changePicture()
+            clickCount += 1
+            alert('You lost by staying!')
+        } else {
+            changePicture()
+            clickCount += 1
+            alert('You lost by swtiching!')
+        }
     }
 }
 
