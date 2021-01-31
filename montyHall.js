@@ -21,14 +21,12 @@ let stayWinCount = 0
 let stayLossCount = 0
 let totalStayCount = 0
 let winPercentStayCount = 0
-let lossPercentStayCount = 1 - winPercentStayCount
 
 
 let switchWinCount = 0
 let switchLossCount = 0
 let totalSwitchCount = 0
 let winPercentSwitchCount = 0
-let lossPercentSwitchCount = 1 - winPercentSwitchCount
 
 
 let winningDoor = 0
@@ -38,6 +36,9 @@ let stayDoor = 0
 let carDoorArray = ['door1', 'door2', 'door3']
 let goatDoorArray = ['door1', 'door2', 'door3']
 let switchDoorArray = ['door1', 'door2', 'door3']
+
+stayAttempts = []
+switchAttempts = []
 
 door1.addEventListener('click', firstDoor)
 door2.addEventListener('click', secondDoor)
@@ -100,6 +101,9 @@ function firstDoor() {
             stayWinDisplay.textContent = stayWinCount
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = winPercentStayCount
+            stayAttempts.push(totalStayCount)
+            myChart.data.datasets[0].data.push(winPercentStayCount)
+            myChart.update()
             alert('You won by staying!')
         } else {
             changePicture()
@@ -111,6 +115,9 @@ function firstDoor() {
             switchWinDisplay.textContent = switchWinCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
+            switchAttempts.push(totalSwitchCount)
+            myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            myChart.update()
             alert('You won by swtiching!')
         }
 
@@ -125,6 +132,9 @@ function firstDoor() {
             stayLossDisplay.textContent = stayLossCount
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = winPercentStayCount
+            stayAttempts.push(totalStayCount)
+            myChart.data.datasets[0].data.push(winPercentStayCount)
+            myChart.update()
             alert('You lost by staying!')
         } else {
             changePicture()
@@ -135,6 +145,9 @@ function firstDoor() {
             switchLossDisplay.textContent = switchLossCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
+            switchAttempts.push(totalSwitchCount)
+            myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            myChart.update()
             alert('You lost by swtiching!')
         }
     }
@@ -184,6 +197,9 @@ function secondDoor() {
             stayWinDisplay.textContent = stayWinCount
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = winPercentStayCount
+            stayAttempts.push(totalStayCount)
+            myChart.data.datasets[0].data.push(winPercentStayCount)
+            myChart.update()
             alert('You won by staying!')
         } else {
             changePicture()
@@ -195,6 +211,9 @@ function secondDoor() {
             switchWinDisplay.textContent = switchWinCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
+            switchAttempts.push(totalSwitchCount)
+            myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            myChart.update()
             alert('You won by swtiching!')
         }
 
@@ -209,6 +228,9 @@ function secondDoor() {
             stayLossDisplay.textContent = stayLossCount
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = winPercentStayCount
+            stayAttempts.push(totalStayCount)
+            myChart.data.datasets[0].data.push(winPercentStayCount)
+            myChart.update()
             alert('You lost by staying!')
         } else {
             changePicture()
@@ -219,6 +241,9 @@ function secondDoor() {
             switchLossDisplay.textContent = switchLossCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
+            switchAttempts.push(totalSwitchCount)
+            myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            myChart.update()
             alert('You lost by swtiching!')
         }
     }
@@ -268,6 +293,9 @@ function thirdDoor() {
             stayWinDisplay.textContent = stayWinCount
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = winPercentStayCount
+            stayAttempts.push(totalStayCount)
+            myChart.data.datasets[0].data.push(winPercentStayCount)
+            myChart.update()
             alert('You won by staying!')
         } else {
             changePicture()
@@ -279,6 +307,9 @@ function thirdDoor() {
             switchWinDisplay.textContent = switchWinCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
+            switchAttempts.push(totalSwitchCount)
+            myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            myChart.update()
             alert('You won by swtiching!')
         }
 
@@ -293,6 +324,9 @@ function thirdDoor() {
             stayLossDisplay.textContent = stayLossCount
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = winPercentStayCount
+            stayAttempts.push(totalStayCount)
+            myChart.data.datasets[0].data.push(winPercentStayCount)
+            myChart.update()
             alert('You lost by staying!')
         } else {
             changePicture()
@@ -303,11 +337,15 @@ function thirdDoor() {
             switchLossDisplay.textContent = switchLossCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
+            switchAttempts.push(totalSwitchCount)
+            myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            myChart.update()
             alert('You lost by swtiching!')
         }
     }
 }
 resetButton.addEventListener('click', reset)
+
 
 function reset() {
     clickCount = 0;
@@ -318,3 +356,59 @@ function reset() {
     goatDoorArray = ['door1', 'door2', 'door3']
     switchDoorArray = ['door1', 'door2', 'door3']
 }
+
+
+let ctx = document.getElementById('myChart');
+
+let myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: stayAttempts,
+        datasets: [{
+            label: 'Stay Cumulative Win Percentage',
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Switch Cumulative Win Percentage',
+            data: [],
+            backgroundColor: [
+                'rgba(63, 7, 146, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="montyHall.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js'></script>
+
     <title>Monty Hall</title>
 </head>
 
@@ -26,7 +28,7 @@
             Win Percentage: <span id='switchPercentTotal'>0</span>
         </h2>
 
-        <div class=' container'>
+        <div class='container'>
             <div class="doors">
                 <div class='door' id='door1'>
                     <img id='doorImg1' src="imgs/Door1.png" alt="">
@@ -38,15 +40,16 @@
                     <img id='doorImg3' src="imgs/Door3.png" alt="">
                 </div>
             </div>
-
             <div class='graph'>
                 <div>
-                    <img src="imgs/Graph.png" alt="">
+                    <canvas id="myChart" width="350" height="350"></canvas>
                 </div>
             </div>
 
         </div>
         <script src="montyHall.js"></script>
+
+
 </body>
 
 </html>
