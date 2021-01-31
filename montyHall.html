@@ -11,25 +11,39 @@
 <body>
     <h1> Monty Hall </h1>
     <button id='reset' class='''> Reset </button>
+    <h2> Stay </h2>
 
-    <div class=' container'>
-        <div class="doors">
-            <div class='door' id='door1'>
-                <img id='doorImg1' src="imgs/Door1.png" alt="">
-            </div>
-            <div class='door' id='door2'>
-                <img id='doorImg2' src="imgs/Door2.png" alt="">
-            </div>
-            <div class='door' id='door3'>
-                <img id='doorImg3' src="imgs/Door3.png" alt="">
-            </div>
-        </div>
+    <h2> Wins: <span id="stayWins"> 0 </span>
+        Losses: <span id='stayLosses'>0</span>
+        Total: <span id='stayTotal'>0</span>
+        Win Percentage: <span id='stayPercentTotal'>0</span>
+        </h2>
 
-        <div class='graph'>
-            <div>
-                <img src="imgs/Graph.png" alt="">
+        <h2> Switch </h2>
+        <h2> Wins: <span id="switchWins"> 0 </span>
+            Losses: <span id='switchLosses'>0</span>
+            Total: <span id='switchTotal'>0</span>
+            Win Percentage: <span id='switchPercentTotal'>0</span>
+        </h2>
+
+        <div class=' container'>
+            <div class="doors">
+                <div class='door' id='door1'>
+                    <img id='doorImg1' src="imgs/Door1.png" alt="">
+                </div>
+                <div class='door' id='door2'>
+                    <img id='doorImg2' src="imgs/Door2.png" alt="">
+                </div>
+                <div class='door' id='door3'>
+                    <img id='doorImg3' src="imgs/Door3.png" alt="">
+                </div>
             </div>
-        </div>
+
+            <div class='graph'>
+                <div>
+                    <img src="imgs/Graph.png" alt="">
+                </div>
+            </div>
 
         </div>
         <script src="montyHall.js"></script>

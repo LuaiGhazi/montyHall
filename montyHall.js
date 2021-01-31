@@ -1,14 +1,34 @@
 const door1 = document.querySelector('#doorImg1')
 const door2 = document.querySelector('#doorImg2')
 const door3 = document.querySelector('#doorImg3')
+
 const resetButton = document.querySelector('#reset')
+
+const stayWinDisplay = document.querySelector('#stayWins')
+const stayLossDisplay = document.querySelector('#stayLosses')
+const stayTotalDisplay = document.querySelector('#stayTotal')
+const stayPercentDisplay = document.querySelector('#stayPercentTotal')
+
+const switchWinDisplay = document.querySelector('#switchWins')
+const switchLossDisplay = document.querySelector('#switchLosses')
+const switchTotalDisplay = document.querySelector('#switchTotal')
+const switchPercentDisplay = document.querySelector('#switchPercentTotal')
 
 
 let clickCount = 0
+
 let stayWinCount = 0
 let stayLossCount = 0
+let totalStayCount = 0
+let winPercentStayCount = 0
+let lossPercentStayCount = 1 - winPercentStayCount
+
+
 let switchWinCount = 0
 let switchLossCount = 0
+let totalSwitchCount = 0
+let winPercentSwitchCount = 0
+let lossPercentSwitchCount = 1 - winPercentSwitchCount
 
 
 let winningDoor = 0
@@ -71,24 +91,50 @@ function firstDoor() {
         switchDoor = switchDoorArray[0]
         console.log(`The switch door is: ${switchDoor}`)
     } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor === 'door1') {
-        if (stayDoor = 'door1') {
+        if (stayDoor === 'door1') {
             changePicture()
             clickCount += 1
+            stayWinCount += 1
+            totalStayCount += 1
+            winPercentStayCount = stayWinCount / totalStayCount
+            stayWinDisplay.textContent = stayWinCount
+            stayTotalDisplay.textContent = totalStayCount
+            stayPercentDisplay.textContent = winPercentStayCount
             alert('You won by staying!')
         } else {
             changePicture()
+            console.log('hit the route')
             clickCount += 1
+            switchWinCount += 1
+            totalSwitchCount += 1
+            winPercentSwitchCount = switchWinCount / totalSwitchCount
+            switchWinDisplay.textContent = switchWinCount
+            switchTotalDisplay.textContent = totalSwitchCount
+            switchPercentDisplay.textContent = winPercentSwitchCount
             alert('You won by swtiching!')
         }
 
     } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor !== "door1") {
-        if (stayDoor = 'door1') {
+        if (stayDoor === 'door1') {
             changePicture()
             clickCount += 1
+            stayLossCount += 1
+            totalStayCount += 1
+            winPercentStayCount = stayWinCount / totalStayCount
+            console.log(totalStayCount)
+            stayLossDisplay.textContent = stayLossCount
+            stayTotalDisplay.textContent = totalStayCount
+            stayPercentDisplay.textContent = winPercentStayCount
             alert('You lost by staying!')
         } else {
             changePicture()
             clickCount += 1
+            switchLossCount += 1
+            totalSwitchCount += 1
+            winPercentSwitchCount = switchWinCount / totalSwitchCount
+            switchLossDisplay.textContent = switchLossCount
+            switchTotalDisplay.textContent = totalSwitchCount
+            switchPercentDisplay.textContent = winPercentSwitchCount
             alert('You lost by swtiching!')
         }
     }
@@ -129,23 +175,50 @@ function secondDoor() {
         switchDoor = switchDoorArray[0]
         console.log(`The swtich door is: ${switchDoor}`)
     } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor === 'door2') {
-        if (stayDoor = 'door2') {
+        if (stayDoor === 'door2') {
             changePicture()
             clickCount += 1
+            stayWinCount += 1
+            totalStayCount += 1
+            winPercentStayCount = stayWinCount / totalStayCount
+            stayWinDisplay.textContent = stayWinCount
+            stayTotalDisplay.textContent = totalStayCount
+            stayPercentDisplay.textContent = winPercentStayCount
             alert('You won by staying!')
         } else {
             changePicture()
+            console.log('hit the route')
             clickCount += 1
+            switchWinCount += 1
+            totalSwitchCount += 1
+            winPercentSwitchCount = switchWinCount / totalSwitchCount
+            switchWinDisplay.textContent = switchWinCount
+            switchTotalDisplay.textContent = totalSwitchCount
+            switchPercentDisplay.textContent = winPercentSwitchCount
             alert('You won by swtiching!')
         }
+
     } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor !== "door2") {
-        if (stayDoor = 'door2') {
+        if (stayDoor === 'door2') {
             changePicture()
             clickCount += 1
+            stayLossCount += 1
+            totalStayCount += 1
+            winPercentStayCount = stayWinCount / totalStayCount
+            console.log(totalStayCount)
+            stayLossDisplay.textContent = stayLossCount
+            stayTotalDisplay.textContent = totalStayCount
+            stayPercentDisplay.textContent = winPercentStayCount
             alert('You lost by staying!')
         } else {
             changePicture()
             clickCount += 1
+            switchLossCount += 1
+            totalSwitchCount += 1
+            winPercentSwitchCount = switchWinCount / totalSwitchCount
+            switchLossDisplay.textContent = switchLossCount
+            switchTotalDisplay.textContent = totalSwitchCount
+            switchPercentDisplay.textContent = winPercentSwitchCount
             alert('You lost by swtiching!')
         }
     }
@@ -186,30 +259,54 @@ function thirdDoor() {
         switchDoor = switchDoorArray[0]
         console.log(`The swtich door is: ${switchDoor}`)
     } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor === 'door3') {
-        if (stayDoor = 'door3') {
-            console.log(stayDoor)
+        if (stayDoor === 'door3') {
             changePicture()
             clickCount += 1
+            stayWinCount += 1
+            totalStayCount += 1
+            winPercentStayCount = stayWinCount / totalStayCount
+            stayWinDisplay.textContent = stayWinCount
+            stayTotalDisplay.textContent = totalStayCount
+            stayPercentDisplay.textContent = winPercentStayCount
             alert('You won by staying!')
         } else {
             changePicture()
+            console.log('hit the route')
             clickCount += 1
+            switchWinCount += 1
+            totalSwitchCount += 1
+            winPercentSwitchCount = switchWinCount / totalSwitchCount
+            switchWinDisplay.textContent = switchWinCount
+            switchTotalDisplay.textContent = totalSwitchCount
+            switchPercentDisplay.textContent = winPercentSwitchCount
             alert('You won by swtiching!')
         }
+
     } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor !== "door3") {
-        if (stayDoor = 'door3') {
-            console.log(stayDoor)
+        if (stayDoor === 'door3') {
             changePicture()
             clickCount += 1
+            stayLossCount += 1
+            totalStayCount += 1
+            winPercentStayCount = stayWinCount / totalStayCount
+            console.log(totalStayCount)
+            stayLossDisplay.textContent = stayLossCount
+            stayTotalDisplay.textContent = totalStayCount
+            stayPercentDisplay.textContent = winPercentStayCount
             alert('You lost by staying!')
         } else {
             changePicture()
             clickCount += 1
+            switchLossCount += 1
+            totalSwitchCount += 1
+            winPercentSwitchCount = switchWinCount / totalSwitchCount
+            switchLossDisplay.textContent = switchLossCount
+            switchTotalDisplay.textContent = totalSwitchCount
+            switchPercentDisplay.textContent = winPercentSwitchCount
             alert('You lost by swtiching!')
         }
     }
 }
-
 resetButton.addEventListener('click', reset)
 
 function reset() {
@@ -219,4 +316,5 @@ function reset() {
     door3.src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png"
     carDoorArray = ['door1', 'door2', 'door3']
     goatDoorArray = ['door1', 'door2', 'door3']
+    switchDoorArray = ['door1', 'door2', 'door3']
 }
