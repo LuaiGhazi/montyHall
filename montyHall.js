@@ -3,8 +3,11 @@ const door2 = document.querySelector('#doorImg2')
 const door3 = document.querySelector('#doorImg3')
 
 let clickCount = 0
-let winCount = 0
-let lossCount = 0
+let stayWinCount = 0
+let stayLossCount = 0
+let switchWinCount = 0
+let switchLossCount = 0
+
 
 let winningDoor = 0
 let losingDoor = 0
@@ -50,13 +53,15 @@ function firstDoor() {
         console.log(`The remaining door is ${carDoorArray}`)
         losingDoor = carDoorArray[0]
         console.log(`The remaining door that contains a goat is ${losingDoor}`)
+        console.log(`The winning door is ${winningDoor}`)
         //Increase click count
         clickCount += 1
-    } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor.src === 'Door1') {
+    } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor === 'door1') {
         changePicture()
         clickCount += 1
         alert('You won!')
-    } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor.src !== "Door1") {
+    } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor !== "door1") {
+        console.log('hit the loss route')
         changePicture()
         clickCount += 1
         alert('You lost!')
@@ -89,11 +94,11 @@ function secondDoor() {
         console.log(`The remaining door that contains a goat is ${losingDoor}`)
         //Increase click count
         clickCount += 1
-    } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor.src === 'Door2') {
+    } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor === 'door2') {
         changePicture()
         clickCount += 1
         alert('You won!')
-    } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor.src !== "Door2") {
+    } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor !== "door2") {
         changePicture()
         clickCount += 1
         alert('You lost!')
@@ -126,11 +131,11 @@ function thirdDoor() {
         console.log(`The remaining door that contains a goat is ${losingDoor}`)
         //Increase click count
         clickCount += 1
-    } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor.src === 'Door3') {
+    } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor === 'door3') {
         changePicture()
         clickCount += 1
         alert('You won!')
-    } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor.src !== "Door3") {
+    } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor !== "door3") {
         changePicture()
         clickCount += 1
         alert('You lost!')
