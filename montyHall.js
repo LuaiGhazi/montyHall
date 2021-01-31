@@ -28,6 +28,11 @@ let switchLossCount = 0
 let totalSwitchCount = 0
 let winPercentSwitchCount = 0
 
+let stayAttempts = []
+let switchAttempts = []
+
+let totalAttempts = 0
+let totalAttemptsArr = []
 
 let winningDoor = 0
 let losingDoor = 0
@@ -37,8 +42,7 @@ let carDoorArray = ['door1', 'door2', 'door3']
 let goatDoorArray = ['door1', 'door2', 'door3']
 let switchDoorArray = ['door1', 'door2', 'door3']
 
-stayAttempts = []
-switchAttempts = []
+
 
 door1.addEventListener('click', firstDoor)
 door2.addEventListener('click', secondDoor)
@@ -103,6 +107,10 @@ function firstDoor() {
             stayPercentDisplay.textContent = winPercentStayCount
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You won by staying!')
         } else {
@@ -117,6 +125,10 @@ function firstDoor() {
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You won by swtiching!')
         }
@@ -134,6 +146,10 @@ function firstDoor() {
             stayPercentDisplay.textContent = winPercentStayCount
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You lost by staying!')
         } else {
@@ -147,6 +163,10 @@ function firstDoor() {
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You lost by swtiching!')
         }
@@ -199,6 +219,10 @@ function secondDoor() {
             stayPercentDisplay.textContent = winPercentStayCount
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You won by staying!')
         } else {
@@ -213,6 +237,10 @@ function secondDoor() {
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You won by swtiching!')
         }
@@ -230,6 +258,10 @@ function secondDoor() {
             stayPercentDisplay.textContent = winPercentStayCount
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You lost by staying!')
         } else {
@@ -243,6 +275,10 @@ function secondDoor() {
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You lost by swtiching!')
         }
@@ -295,6 +331,10 @@ function thirdDoor() {
             stayPercentDisplay.textContent = winPercentStayCount
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You won by staying!')
         } else {
@@ -309,6 +349,10 @@ function thirdDoor() {
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You won by swtiching!')
         }
@@ -326,6 +370,10 @@ function thirdDoor() {
             stayPercentDisplay.textContent = winPercentStayCount
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You lost by staying!')
         } else {
@@ -339,6 +387,10 @@ function thirdDoor() {
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
+            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+                totalAttemptsArr.push(totalAttempts)
+            }
             myChart.update()
             alert('You lost by swtiching!')
         }
@@ -363,7 +415,7 @@ let ctx = document.getElementById('myChart');
 let myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: stayAttempts,
+        labels: totalAttemptsArr,
         datasets: [{
             label: 'Stay Cumulative Win Percentage',
             data: [],
@@ -406,7 +458,16 @@ let myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    min: 0,
+                    max: 1,// Your absolute max value
+                    callback: function (value) {
+                        return (value / this.max * 100).toFixed(0) + '%'; // convert it to percentage
+                    },
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Percentage',
                 }
             }]
         }
