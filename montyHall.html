@@ -6,69 +6,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="montyHall.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js'></script>
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&family=Playfair+Display&display=swap"
+        rel="stylesheet">
     <title>Monty Hall</title>
 </head>
 
 <body>
-    <h1> Monty Hall </h1>
-    <button id='reset' class='''> Reset </button>
+    <h1 class='centerHeader'> The Monty Hall Problem </h1>
+    <img class='headerImage' src="imgs/headerImage.png" alt="">
+    <p>Suppose you're on a game show, and you're given the choice of three doors. Behind one door is a car and behind
+        the other two are goats. You pick a door, say door number 1, and the host, who knows what's behind the doors,
+        opens another door, say door number 3, and reveals the first goat. He then says to you, <b>"Do you want to stay
+            with the
+            first door you picked, or would you like to switch and pick door number 2?".</b></p>
 
-    <div>
-        <table>
-            <tr>
-                <th> </th>
-                <th> Stay</th>
-                <th> Switch</th>
-            </tr>
+    <p>Now most people (including myself once upon a time), would assume that since you're down to two doors, the
+        chances of winning are 50/50 regardless of whether you decide to stick with your first choice or switch to
+        another door. Believe it or not, this isn't true!
+    </p>
 
-            <tr>
-                <th rowspan=' 2'> Wins</th>
-        <td id="stayWins">0</td>
-        <td id="switchWins">0</td>
-        </tr>
-        <tr>
-            <td> <span id='stayPercentTotal'></span><span>%</span></td>
-            <td> <span id='switchPercentTotal'></span><span>%</span></td>
-        </tr>
-        <tr>
-            <th rowspan='2'> Losses</th>
-            <td id='stayLosses'>0</td>
-            <td id='switchLosses'>0</td>
-        </tr>
-        <tr>
-            <td> <span id='stayLossPercentTotal'></span><span>%</span></td>
-            <td> <span id='switchLossPercentTotal'></span><span>%</span></td>
-        </tr>
-        <tr>
-            <th> Total</th>
-            <td id='stayTotal'>0</td>
-            <td id='switchTotal'>0</td>
-        </tr>
-        </table>
+    <section class='leftSideContainer'>
+        <div class='left-half'>
+            <h1 class='centerHeader'> The History Behind This Problem </h1>
+            <p>
+                The Monty Hall problem is a brain teaser, in the form of a probability puzzle, loosely based on the
+                American
+                television game show Let's Make a Deal and named after its original host, Monty Hall. The problem was
+                originally
+                posed in a letter by Steve Selvin in 1990 to Marilyn vos Savant's "Ask Marilyn" column.
+            </p>
+            <p>
+                Vos Savant's response was that the contestant should switch to the other door. She argued that
+                contestants
+                who
+                switch have a 2 in 3 chance of winning the car, while contestants who stick to their initial choice have
+                only a
+                1 in 3 chance.
+            </p>
+            <p>
+                Not convinced? Well you aren't alone. Many readers of vos Savant's column refused to believe switching
+                is
+                a superior strategy. After the problem appeared in her column, approximately 10,000 readers,
+                including nearly 1,000 with PhDs, wrote to the magazine, most of them claiming vos Savant was wrong.
+                Paul
+                Erdős,
+                one of the most prolific mathematicians in history, remained unconvinced until he was shown a computer
+                simulation demonstrating vos Savant's predicted result.
+            </p>
         </div>
+        <div class='right-half'>
+            <img src="imgs/vossavantcolumn.png" alt="">
+        </div>
+    </section>
 
-        <div class='container'>
-            <div class="doors">
-                <div class='door' id='door1'>
-                    <img id='doorImg1' src="imgs/Door1.png" alt="">
-                </div>
-                <div class='door' id='door2'>
-                    <img id='doorImg2' src="imgs/Door2.png" alt="">
-                </div>
-                <div class='door' id='door3'>
-                    <img id='doorImg3' src="imgs/Door3.png" alt="">
-                </div>
+
+    <section class='leftSideContainer'>
+        <div class='right-half'>
+            <img src="imgs/monty-hall-problem-100-doors.png" alt="">
+        </div>
+        <div class='left-half'>
+            <h1 class='centerHeader'> Understanding the solution conceptually </h1>
+            <p>A lot of people struggle understanding how on Earth the odds aren't always 50/50. The key here is that
+                you
+                are
+                NOT
+                making a completely 'blind' guess between the two remaining doors. The Monty Hall problem has a very
+                specific
+                clause: Monty, the host of the show, knows where the car is. He is the one who eliminates one of the
+                doors
+                that
+                you
+                did not select. When he eliminates the doors (i.e. shows you what's behind the door you did NOT select)
+                he
+                never
+                chooses the door with the car. Because Monty will never eliminate the door that holds the car, he raises
+                the
+                odds that switching is always a good bet.</p>
+            <p>Now this can be difficult to wrap your head around with only 3 doors, so let's look at the exact same
+                problem
+                with 100 doors instead of 3. You pick a random door. Instead of one door, Monty now eliminates 98
+                doors.These
+                are
+                doors that he knows do not have the prize! This leaves only two doors. The one you picked, and one that
+                was
+                left
+                after Monty eliminated the others. Do you still feel like sticking with the door you first picked when
+                there
+                were 100 options is just as likely
+                to result in a win than the remaining door that Monty himself made sure stays in the game? </p>
+            <p>
+        </div>
+    </section>
+
+    <section class='leftSideContainer'>
+        <div class='left-half'>
+            <h1 class='centerHeader'> Understanding the solution mathematically </h1>
+
+            <p> If you still aren't convinced then another way to understanding the solution is to list out all
+                the
+                possible
+                outcomes, and count how often you get the car if you stay versus switch. Assuming you decide to
+                select
+                door
+                one
+                first, then the possible outcomes can be seen in this table:</p>
+
+            <p>In two out of three cases, you win the car by changing your selection after one of the doors is
+                revealed.
+                Hence,
+                by changing your option, you double your probability of winning vs. sticking with the same door.
+
+                Another way of seeing the same set of options is by drawing it out as a decision tree. As you
+                can see in
+                the
+                decision tree, when you switch your door you win 2 out of 3 times versus when you stick with
+                your door
+                you
+                only
+                win 1 out of 3 times.
+            </p>
+        </div>
+        <div class='right-half'>
+            <img src="imgs/table.png" alt="">
+            <img src="imgs/diagram.png" alt="">
+        </div>
+    </section>
+
+
+
+    <h1 class='centerHeader'> Still not convinced? </h1>
+    <h2 class='centerHeader'> Try it for yourself...</h2>
+    <button id='reset'> Reset </button>
+
+
+
+    <div class='container'>
+        <div class="doors">
+            <div class='door' id='door1'>
+                <img id='doorImg1' src="imgs/Door1.png" alt="">
             </div>
-            <div class='graph'>
-                <div>
-                    <canvas id="myChart" width="350" height="350"></canvas>
-                </div>
+            <div class='door' id='door2'>
+                <img id='doorImg2' src="imgs/Door2.png" alt="">
+            </div>
+            <div class='door' id='door3'>
+                <img id='doorImg3' src="imgs/Door3.png" alt="">
             </div>
         </div>
+        <div class='graph'>
+
+            <div id='chart'>
+                <canvas id="myChart" width="350" height="350"></canvas>
+            </div>
+
+            <div>
+                <table>
+                    <tr>
+                        <th> </th>
+                        <th> Stay</th>
+                        <th> Switch</th>
+                    </tr>
+
+                    <tr>
+                        <th rowspan=' 2'> Wins</th>
+                        <td id="stayWins">0</td>
+                        <td id="switchWins">0</td>
+                    </tr>
+                    <tr>
+                        <td> <span id='stayPercentTotal'></span><span>%</span></td>
+                        <td> <span id='switchPercentTotal'></span><span>%</span></td>
+                    </tr>
+                    <tr>
+                        <th rowspan='2'> Losses</th>
+                        <td id='stayLosses'>0</td>
+                        <td id='switchLosses'>0</td>
+                    </tr>
+                    <tr>
+                        <td> <span id='stayLossPercentTotal'></span><span>%</span></td>
+                        <td> <span id='switchLossPercentTotal'></span><span>%</span></td>
+                    </tr>
+                    <tr>
+                        <th> Total</th>
+                        <td id='stayTotal'>0</td>
+                        <td id='switchTotal'>0</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
 
 
-        <script src="montyHall.js"></script>
+    <script src="montyHall.js"></script>
 
 
 </body>

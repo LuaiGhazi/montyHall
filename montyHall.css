@@ -1,15 +1,20 @@
-h1 {
+.centerHeader{
     text-align: center;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700
 }
 
+p{
+font-family: 'Playfair Display', serif;
+}
 /* docs: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
 .container{
     display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
     flex-direction: row; /* The direction flex items are placed in the flex container */
     flex-wrap: wrap; /* flex items will wrap onto multiple lines, from top to bottom. */
     justify-content: space-evenly; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
-    align-items: flex-start; /* The justify content version for the cross axis. */
-
+    align-items: center; /* The justify content version for the cross axis. */
+    padding: 2;
     /* This property only takes effect on multi-line flexible containers, where flex-flow is set to either wrap or wrap-reverse) */
     /* align-content: flex-start;   */
 }
@@ -19,21 +24,28 @@ h1 {
     display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
     flex-direction: row; /* The direction flex items are placed in the flex container */
     flex-wrap: wrap; /* flex items will wrap onto multiple lines, from top to bottom. */
-    justify-content: space-evenly; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
-    align-items: flex-start; /* The justify content version for the cross axis. */
+    justify-content: center; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
+    align-items: center; /* The justify content version for the cross axis. */
 }
 
 .graph{
-    flex-grow: 2;/* This defines the ability for a flex item to grow if necessary.  */
-    display: flex;
-    justify-content: center;
+    flex-grow: 1; 
+    display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
+    flex-direction: row; /* The direction flex items are placed in the flex container */
+    flex-wrap: wrap; /* flex items will wrap onto multiple lines, from top to bottom. */
+    justify-content: space-evenly; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
+    align-items: center; /* The justify content version for the cross axis. */
 }
 
 img{
-   height: 462px;
-   width: 241px
+   height: 350px;
+   width: 175px
 }
-
+/* 
+#chart{
+    height: 462px;
+    width: 241px
+ } */
 
 img:hover{
     -webkit-border-radius: 10px;
@@ -79,4 +91,33 @@ tr:nth-child(odd) td {
   
 caption {
     padding: 10px;
+  }
+
+.headerImage{
+   height: 150px;
+   width: 250px;
+   display: block; 
+   margin-left: auto;
+   margin-right: auto;
+  }
+
+
+  body{
+      background-color: #EDE8E4;
+  }
+
+  .leftSideContainer{
+    display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
+  }
+
+  .left-half {
+    background-color: #83CEEC;
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .right-half {
+    background-color: #006BBD;
+    flex: 1;
+    padding: 1rem;
   }
