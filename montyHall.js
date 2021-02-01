@@ -8,11 +8,13 @@ const stayWinDisplay = document.querySelector('#stayWins')
 const stayLossDisplay = document.querySelector('#stayLosses')
 const stayTotalDisplay = document.querySelector('#stayTotal')
 const stayPercentDisplay = document.querySelector('#stayPercentTotal')
+const stayLossPercentDisplay = document.querySelector('#stayLossPercentTotal')
 
 const switchWinDisplay = document.querySelector('#switchWins')
 const switchLossDisplay = document.querySelector('#switchLosses')
 const switchTotalDisplay = document.querySelector('#switchTotal')
 const switchPercentDisplay = document.querySelector('#switchPercentTotal')
+const switchLossPercentDisplay = document.querySelector('#switchLossPercentTotal')
 
 
 let clickCount = 0
@@ -21,12 +23,14 @@ let stayWinCount = 0
 let stayLossCount = 0
 let totalStayCount = 0
 let winPercentStayCount = 0
+let lossPercentStayCount = 0
 
 
 let switchWinCount = 0
 let switchLossCount = 0
 let totalSwitchCount = 0
 let winPercentSwitchCount = 0
+let lossPercentSwitchCount = 0
 
 let stayAttempts = []
 let switchAttempts = []
@@ -95,6 +99,7 @@ function firstDoor() {
         console.log(switchDoorArray)
         switchDoor = switchDoorArray[0]
         console.log(`The switch door is: ${switchDoor}`)
+
     } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor === 'door1') {
         if (stayDoor === 'door1') {
             changePicture()
@@ -102,9 +107,12 @@ function firstDoor() {
             stayWinCount += 1
             totalStayCount += 1
             winPercentStayCount = stayWinCount / totalStayCount
+            lossPercentStayCount = 1 - winPercentStayCount
             stayWinDisplay.textContent = stayWinCount
             stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = winPercentStayCount
+            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
+            console.log(lossPercentStayCount * 100)
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -120,10 +128,13 @@ function firstDoor() {
             switchWinCount += 1
             totalSwitchCount += 1
             winPercentSwitchCount = switchWinCount / totalSwitchCount
+            lossPercentSwitchCount = 1 - winPercentSwitchCount
             switchWinDisplay.textContent = switchWinCount
             switchTotalDisplay.textContent = totalSwitchCount
             switchPercentDisplay.textContent = winPercentSwitchCount
             switchAttempts.push(totalSwitchCount)
+            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
             if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
@@ -140,10 +151,12 @@ function firstDoor() {
             stayLossCount += 1
             totalStayCount += 1
             winPercentStayCount = stayWinCount / totalStayCount
+            lossPercentStayCount = 1 - winPercentStayCount
             console.log(totalStayCount)
             stayLossDisplay.textContent = stayLossCount
             stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = winPercentStayCount
+            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -158,9 +171,11 @@ function firstDoor() {
             switchLossCount += 1
             totalSwitchCount += 1
             winPercentSwitchCount = switchWinCount / totalSwitchCount
+            lossPercentSwitchCount = 1 - winPercentSwitchCount
             switchLossDisplay.textContent = switchLossCount
             switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = winPercentSwitchCount
+            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -214,9 +229,11 @@ function secondDoor() {
             stayWinCount += 1
             totalStayCount += 1
             winPercentStayCount = stayWinCount / totalStayCount
+            lossPercentStayCount = 1 - winPercentStayCount
             stayWinDisplay.textContent = stayWinCount
             stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = winPercentStayCount
+            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -232,9 +249,11 @@ function secondDoor() {
             switchWinCount += 1
             totalSwitchCount += 1
             winPercentSwitchCount = switchWinCount / totalSwitchCount
+            lossPercentSwitchCount = 1 - winPercentSwitchCount
             switchWinDisplay.textContent = switchWinCount
             switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = winPercentSwitchCount
+            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -252,10 +271,12 @@ function secondDoor() {
             stayLossCount += 1
             totalStayCount += 1
             winPercentStayCount = stayWinCount / totalStayCount
+            lossPercentStayCount = 1 - winPercentStayCount
             console.log(totalStayCount)
             stayLossDisplay.textContent = stayLossCount
             stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = winPercentStayCount
+            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -270,9 +291,11 @@ function secondDoor() {
             switchLossCount += 1
             totalSwitchCount += 1
             winPercentSwitchCount = switchWinCount / totalSwitchCount
+            lossPercentSwitchCount = 1 - winPercentSwitchCount
             switchLossDisplay.textContent = switchLossCount
             switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = winPercentSwitchCount
+            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -326,10 +349,11 @@ function thirdDoor() {
             stayWinCount += 1
             totalStayCount += 1
             winPercentStayCount = stayWinCount / totalStayCount
+            lossPercentStayCount = 1 - winPercentStayCount
             stayWinDisplay.textContent = stayWinCount
             stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = winPercentStayCount
-            stayAttempts.push(totalStayCount)
+            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
             if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
@@ -344,9 +368,11 @@ function thirdDoor() {
             switchWinCount += 1
             totalSwitchCount += 1
             winPercentSwitchCount = switchWinCount / totalSwitchCount
+            lossPercentSwitchCount = 1 - winPercentSwitchCount
             switchWinDisplay.textContent = switchWinCount
             switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = winPercentSwitchCount
+            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -364,10 +390,12 @@ function thirdDoor() {
             stayLossCount += 1
             totalStayCount += 1
             winPercentStayCount = stayWinCount / totalStayCount
+            lossPercentStayCount = 1 - winPercentStayCount
             console.log(totalStayCount)
             stayLossDisplay.textContent = stayLossCount
             stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = winPercentStayCount
+            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
             stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -382,9 +410,11 @@ function thirdDoor() {
             switchLossCount += 1
             totalSwitchCount += 1
             winPercentSwitchCount = switchWinCount / totalSwitchCount
+            lossPercentSwitchCount = 1 - winPercentSwitchCount
             switchLossDisplay.textContent = switchLossCount
             switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = winPercentSwitchCount
+            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
             switchAttempts.push(totalSwitchCount)
             myChart.data.datasets[1].data.push(winPercentSwitchCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
@@ -460,7 +490,7 @@ let myChart = new Chart(ctx, {
                 ticks: {
                     beginAtZero: true,
                     min: 0,
-                    max: 1,// Your absolute max value
+                    max: 1,// My absolute max value
                     callback: function (value) {
                         return (value / this.max * 100).toFixed(0) + '%'; // convert it to percentage
                     },

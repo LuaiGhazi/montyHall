@@ -13,20 +13,40 @@
 <body>
     <h1> Monty Hall </h1>
     <button id='reset' class='''> Reset </button>
-    <h2> Stay </h2>
 
-    <h2> Wins: <span id="stayWins"> 0 </span>
-        Losses: <span id='stayLosses'>0</span>
-        Total: <span id='stayTotal'>0</span>
-        Win Percentage: <span id='stayPercentTotal'>0</span>
-        </h2>
+    <div>
+        <table>
+            <tr>
+                <th> </th>
+                <th> Stay</th>
+                <th> Switch</th>
+            </tr>
 
-        <h2> Switch </h2>
-        <h2> Wins: <span id="switchWins"> 0 </span>
-            Losses: <span id='switchLosses'>0</span>
-            Total: <span id='switchTotal'>0</span>
-            Win Percentage: <span id='switchPercentTotal'>0</span>
-        </h2>
+            <tr>
+                <th rowspan=' 2'> Wins</th>
+        <td id="stayWins">0</td>
+        <td id="switchWins">0</td>
+        </tr>
+        <tr>
+            <td> <span id='stayPercentTotal'></span><span>%</span></td>
+            <td> <span id='switchPercentTotal'></span><span>%</span></td>
+        </tr>
+        <tr>
+            <th rowspan='2'> Losses</th>
+            <td id='stayLosses'>0</td>
+            <td id='switchLosses'>0</td>
+        </tr>
+        <tr>
+            <td> <span id='stayLossPercentTotal'></span><span>%</span></td>
+            <td> <span id='switchLossPercentTotal'></span><span>%</span></td>
+        </tr>
+        <tr>
+            <th> Total</th>
+            <td id='stayTotal'>0</td>
+            <td id='switchTotal'>0</td>
+        </tr>
+        </table>
+        </div>
 
         <div class='container'>
             <div class="doors">
@@ -45,8 +65,9 @@
                     <canvas id="myChart" width="350" height="350"></canvas>
                 </div>
             </div>
-
         </div>
+
+
         <script src="montyHall.js"></script>
 
 
