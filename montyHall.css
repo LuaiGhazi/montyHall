@@ -15,6 +15,10 @@ font-family: 'Playfair Display', serif;
     justify-content: space-evenly; /* items are distributed so that the spacing between any two items (and the space to the edges) is equal.*/
     align-items: center; /* The justify content version for the cross axis. */
     padding: 2;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+
     /* This property only takes effect on multi-line flexible containers, where flex-flow is set to either wrap or wrap-reverse) */
     /* align-content: flex-start;   */
 }
@@ -37,17 +41,18 @@ font-family: 'Playfair Display', serif;
     align-items: center; /* The justify content version for the cross axis. */
 }
 
-img{
+.door{
    height: 350px;
    width: 175px
 }
-/* 
-#chart{
-    height: 462px;
-    width: 241px
- } */
 
-img:hover{
+/* #imageSize{
+    height: 350;
+    width: 300;
+} */
+
+
+.door:hover{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -102,22 +107,56 @@ caption {
   }
 
 
-  body{
+body{
       background-color: #EDE8E4;
   }
 
-  .leftSideContainer{
+.leftSideContainer{
     display: flex; /* defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children. */
   }
 
-  .left-half {
+.left-half {
     background-color: #83CEEC;
     flex: 1;
     padding: 1rem;
   }
 
-  .right-half {
+.right-half {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #006BBD;
     flex: 1;
     padding: 1rem;
   }
+
+.hundred-door-half{
+  display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #006BBD;
+    flex: 1;
+    padding: 1rem;
+  }
+}
+
+.centerImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .diagram{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+.instructions{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: 3px solid black;
+  background-color: #C2AFA8;
+  padding: 25;
+}
