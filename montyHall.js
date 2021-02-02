@@ -65,41 +65,41 @@ function changePicture() {
 // in a goat appear 
 function firstDoor() {
     if (clickCount === 0 && door1.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png") {
-        // Place a goat behind one of the other two doors and reveal that door 
-        // Now only door 2 and door 3 are in the array 
-        goatDoorArray.splice(goatDoorArray.indexOf('door1'), 1)
+        //Place a car behind one of the three doors 
+        //Randomly select 0, 1 or 2
+        let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
+        //Store the winning door in string format
+        winningDoor = carDoorArray[randomCarDoor]
+        console.log(`The winning door is: ${winningDoor}`)
+        //Assign the two goats behind the other two doors 
+        //Renove the winning door from the goatDoorArray 
+        goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
         console.log(`The goat door array is: ${goatDoorArray}`)
-        //Randomly place a goat behind door 2 or door 3
-        let randomGoatDoor = [Math.floor(Math.random() * goatDoorArray.length)];
-        let goatDoor = goatDoorArray[randomGoatDoor]
-        console.log(`The goat is behind ${goatDoor}`)
-        //Change door 2 or 3 to have a goat image using 'eval' to work with the string
-        console.log(`Switching image of: ${eval(goatDoor)}`)
-        eval(goatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
-        //Randomly select the winning door between door 1 and the remaining door 
-        carDoorArray.splice(carDoorArray.indexOf(goatDoor), 1)
-        console.log(`The remaining doors are ${carDoorArray}`)
-        let randomWinningDoor = [Math.floor(Math.random() * carDoorArray.length)];
-        winningDoor = carDoorArray[randomWinningDoor]
-        console.log(`The winning door is ${winningDoor}`)
-        // Now we have a winning door
-        carDoorArray.splice(carDoorArray.indexOf(winningDoor), 1)
-        console.log(`The remaining door is ${carDoorArray}`)
-        losingDoor = carDoorArray[0]
-        console.log(`The remaining door that contains a goat is ${losingDoor}`)
-        console.log(`The winning door is ${winningDoor}`)
+        //Reveal the first goat door. 
+        //Randomly select 0 or 1
+        let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
+        let firstGoatDoor = goatDoorArray[randomFirstReveal]
+        console.log(`The first reveal is: ${firstGoatDoor}`)
+        //Store the remaining door that contains a goat 
+        goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
+        losingDoor = goatDoorArray[0]
+        console.log(`The losing door is: ${firstGoatDoor}`)
+        //If it is door1 is the first goatDoor then reveal the other door 
+        if ('door1' === firstGoatDoor) {
+            losingDoor = firstGoatDoor
+            firstGoatDoor = goatDoorArray[0]
+        }
+        //Reveal the first door with a goat 
+        eval(firstGoatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
         //Increase click count
         clickCount += 1
         //Now door 1 is the stay option 
         stayDoor = 'door1'
-        //The remaining door is the switch option
-        //The swtich option  is not door1 or goatDoor 
-        switchDoorArray.splice(switchDoorArray.indexOf('door1'), 1)
-        switchDoorArray.splice(switchDoorArray.indexOf(goatDoor), 1)
-        console.log(switchDoorArray)
-        switchDoor = switchDoorArray[0]
-        console.log(`The switch door is: ${switchDoor}`)
+        // Display 'stay' on this door
 
+        //losingDoor is the switch option
+        switchDoor = losingDoor
+        console.log(`The switch door is: ${switchDoor}`)
     } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor === 'door1') {
         if (stayDoor === 'door1') {
             changePicture()
@@ -190,38 +190,39 @@ function firstDoor() {
 
 function secondDoor() {
     if (clickCount === 0 && door2.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png") {
-        // Place a goat behind one of the other two doors and reveal that door 
-        // Now only door 2 and door 3 are in the array 
-        goatDoorArray.splice(goatDoorArray.indexOf('door2'), 1)
+        //Place a car behind one of the three doors 
+        //Randomly select 0, 1 or 2
+        let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
+        //Store the winning door in string format
+        winningDoor = carDoorArray[randomCarDoor]
+        console.log(`The winning door is: ${winningDoor}`)
+        //Assign the two goats behind the other two doors 
+        //Renove the winning door from the goatDoorArray 
+        goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
         console.log(`The goat door array is: ${goatDoorArray}`)
-        //Randomly place a goat behind door 2 or door 3
-        let randomGoatDoor = [Math.floor(Math.random() * goatDoorArray.length)];
-        let goatDoor = goatDoorArray[randomGoatDoor]
-        console.log(`The goat is behind ${goatDoor}`)
-        //Change door 2 or 3 to have a goat image using 'eval' to work with the string
-        console.log(`Swtiching image of: ${eval(goatDoor)}`)
-        eval(goatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
-        //Randomly select the winning door between door 1 and the remaining door 
-        carDoorArray.splice(carDoorArray.indexOf(goatDoor), 1)
-        console.log(`The remaining doors are ${carDoorArray}`)
-        let randomWinningDoor = [Math.floor(Math.random() * carDoorArray.length)];
-        winningDoor = carDoorArray[randomWinningDoor]
-        console.log(`The winning door is ${winningDoor}`)
-        // Now we have a winning door
-        carDoorArray.splice(carDoorArray.indexOf(winningDoor), 1)
-        console.log(`The remaining door is ${carDoorArray}`)
-        losingDoor = carDoorArray[0]
-        console.log(`The remaining door that contains a goat is ${losingDoor}`)
+        //Reveal the first goat door. 
+        //Randomly select 0 or 1
+        let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
+        let firstGoatDoor = goatDoorArray[randomFirstReveal]
+        console.log(`The first reveal is: ${firstGoatDoor}`)
+        //Store the remaining door that contains a goat 
+        goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
+        losingDoor = goatDoorArray[0]
+        console.log(`The losing door is: ${firstGoatDoor}`)
+        //If it is door1 is the first goatDoor then reveal the other door 
+        if ('door2' === firstGoatDoor) {
+            losingDoor = firstGoatDoor
+            firstGoatDoor = goatDoorArray[0]
+        }
+        //Reveal the first door with a goat 
+        eval(firstGoatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
         //Increase click count
         clickCount += 1
         //Now door 1 is the stay option 
         stayDoor = 'door2'
-        //The remaining door is the switch option
-        //The swtich option  is not door1 or goatDoor 
-        switchDoorArray.splice(switchDoorArray.indexOf('door2'), 1)
-        switchDoorArray.splice(switchDoorArray.indexOf(goatDoor), 1)
-        switchDoor = switchDoorArray[0]
-        console.log(`The swtich door is: ${switchDoor}`)
+        //losingDoor is the switch option
+        switchDoor = losingDoor
+        console.log(`The switch door is: ${switchDoor}`)
     } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor === 'door2') {
         if (stayDoor === 'door2') {
             changePicture()
@@ -310,38 +311,41 @@ function secondDoor() {
 
 function thirdDoor() {
     if (clickCount === 0 && door3.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png") {
-        // Place a goat behind one of the other two doors and reveal that door 
-        // Now only door 2 and door 3 are in the array 
-        goatDoorArray.splice(goatDoorArray.indexOf('door3'), 1)
+        //Place a car behind one of the three doors 
+        //Randomly select 0, 1 or 2
+        let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
+        //Store the winning door in string format
+        winningDoor = carDoorArray[randomCarDoor]
+        console.log(`The winning door is: ${winningDoor}`)
+        //Assign the two goats behind the other two doors 
+        //Renove the winning door from the goatDoorArray 
+        goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
         console.log(`The goat door array is: ${goatDoorArray}`)
-        //Randomly place a goat behind door 2 or door 3
-        let randomGoatDoor = [Math.floor(Math.random() * goatDoorArray.length)];
-        let goatDoor = goatDoorArray[randomGoatDoor]
-        console.log(`The goat is behind ${goatDoor}`)
-        //Change door 2 or 3 to have a goat image using 'eval' to work with the string
-        console.log(`Swtiching image of: ${eval(goatDoor)}`)
-        eval(goatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
-        //Randomly select the winning door between door 1 and the remaining door 
-        carDoorArray.splice(carDoorArray.indexOf(goatDoor), 1)
-        console.log(`The remaining doors are ${carDoorArray}`)
-        let randomWinningDoor = [Math.floor(Math.random() * carDoorArray.length)];
-        winningDoor = carDoorArray[randomWinningDoor]
-        console.log(`The winning door is ${winningDoor}`)
-        // Now we have a winning door
-        carDoorArray.splice(carDoorArray.indexOf(winningDoor), 1)
-        console.log(`The remaining door is ${carDoorArray}`)
-        losingDoor = carDoorArray[0]
-        console.log(`The remaining door that contains a goat is ${losingDoor}`)
+        //Reveal the first goat door. 
+        //Randomly select 0 or 1
+        let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
+        let firstGoatDoor = goatDoorArray[randomFirstReveal]
+        console.log(`The first reveal is: ${firstGoatDoor}`)
+        //Store the remaining door that contains a goat 
+        goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
+        losingDoor = goatDoorArray[0]
+        console.log(`The losing door is: ${firstGoatDoor}`)
+        //If it is door1 is the first goatDoor then reveal the other door 
+        if ('door3' === firstGoatDoor) {
+            losingDoor = firstGoatDoor
+            firstGoatDoor = goatDoorArray[0]
+        }
+        //Reveal the first door with a goat 
+        eval(firstGoatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
         //Increase click count
         clickCount += 1
         //Now door 1 is the stay option 
         stayDoor = 'door3'
-        //The remaining door is the switch option
-        //The swtich option  is not door1 or goatDoor 
-        switchDoorArray.splice(switchDoorArray.indexOf('door3'), 1)
-        switchDoorArray.splice(switchDoorArray.indexOf(goatDoor), 1)
-        switchDoor = switchDoorArray[0]
-        console.log(`The swtich door is: ${switchDoor}`)
+        //losingDoor is the switch option
+        switchDoor = losingDoor
+        console.log(`The switch door is: ${switchDoor}`)
+        //Show Stay on Door1 
+
     } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor === 'door3') {
         if (stayDoor === 'door3') {
             changePicture()
@@ -354,6 +358,7 @@ function thirdDoor() {
             stayTotalDisplay.textContent = totalStayCount
             stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
             stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
+            stayAttempts.push(totalStayCount)
             myChart.data.datasets[0].data.push(winPercentStayCount)
             totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
             if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
@@ -450,20 +455,10 @@ let myChart = new Chart(ctx, {
             label: 'Stay Cumulative Win Percentage',
             data: [],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(0, 0, 0, 0.2)',
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(108, 122, 137, 1)',
             ],
             borderWidth: 1
         },
@@ -471,15 +466,10 @@ let myChart = new Chart(ctx, {
             label: 'Switch Cumulative Win Percentage',
             data: [],
             backgroundColor: [
-                'rgba(63, 7, 146, 0.2)'
+                'rgba(131, 206, 236, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(0, 107, 189, 1)',
             ],
             borderWidth: 1
         }]
