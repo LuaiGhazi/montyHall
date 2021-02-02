@@ -64,7 +64,7 @@ function changePicture() {
 // Click on the first door should always result 
 // in a goat appear 
 function firstDoor() {
-    if (clickCount === 0 && door1.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png") {
+    if (clickCount === 0) {
         //Place a car behind one of the three doors 
         //Randomly select 0, 1 or 2
         console.log(door1.src)
@@ -99,7 +99,7 @@ function firstDoor() {
         //losingDoor is the switch option
         switchDoor = losingDoor
         console.log(`The switch door is: ${switchDoor}`)
-    } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor === 'door1') {
+    } else if (clickCount === 1 && winningDoor === 'door1') {
         if (stayDoor === 'door1') {
             changePicture()
             clickCount += 1
@@ -143,7 +143,7 @@ function firstDoor() {
             alert('You won by swtiching!')
         }
 
-    } else if (door1.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png" && clickCount === 1 && winningDoor !== "door1") {
+    } else if (clickCount === 1 && winningDoor !== "door1") {
         if (stayDoor === 'door1') {
             changePicture()
             clickCount += 1
@@ -188,7 +188,7 @@ function firstDoor() {
 }
 
 function secondDoor() {
-    if (clickCount === 0 && door2.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png") {
+    if (clickCount === 0) {
         //Place a car behind one of the three doors 
         //Randomly select 0, 1 or 2
         let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
@@ -222,7 +222,7 @@ function secondDoor() {
         //losingDoor is the switch option
         switchDoor = losingDoor
         console.log(`The switch door is: ${switchDoor}`)
-    } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor === 'door2') {
+    } else if (clickCount === 1 && winningDoor === 'door2') {
         if (stayDoor === 'door2') {
             changePicture()
             clickCount += 1
@@ -264,7 +264,7 @@ function secondDoor() {
             alert('You won by swtiching!')
         }
 
-    } else if (door2.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png" && clickCount === 1 && winningDoor !== "door2") {
+    } else if (clickCount === 1 && winningDoor !== "door2") {
         if (stayDoor === 'door2') {
             changePicture()
             clickCount += 1
@@ -309,7 +309,7 @@ function secondDoor() {
 }
 
 function thirdDoor() {
-    if (clickCount === 0 && door3.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png") {
+    if (clickCount === 0) {
         //Place a car behind one of the three doors 
         //Randomly select 0, 1 or 2
         let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
@@ -345,7 +345,7 @@ function thirdDoor() {
         console.log(`The switch door is: ${switchDoor}`)
         //Show Stay on Door1 
 
-    } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor === 'door3') {
+    } else if (clickCount === 1 && winningDoor === 'door3') {
         if (stayDoor === 'door3') {
             changePicture()
             clickCount += 1
@@ -387,7 +387,7 @@ function thirdDoor() {
             alert('You won by swtiching!')
         }
 
-    } else if (door3.src === "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png" && clickCount === 1 && winningDoor !== "door3") {
+    } else if (clickCount === 1 && winningDoor !== "door3") {
         if (stayDoor === 'door3') {
             changePicture()
             clickCount += 1
@@ -435,9 +435,9 @@ resetButton.addEventListener('click', reset)
 
 function reset() {
     clickCount = 0;
-    door1.src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png"
-    door2.src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door2.png"
-    door3.src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door3.png"
+    door1.src = "imgs/Door1.png"
+    door2.src = "imgs/Door2.png"
+    door3.src = "imgs/Door3.png"
     carDoorArray = ['door1', 'door2', 'door3']
     goatDoorArray = ['door1', 'door2', 'door3']
     switchDoorArray = ['door1', 'door2', 'door3']
