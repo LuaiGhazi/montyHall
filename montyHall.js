@@ -55,8 +55,8 @@ resetButton.addEventListener('click', reset)
 
 
 function changePicture() {
-    eval(winningDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/car.png"
-    eval(losingDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
+    eval(winningDoor).src = "imgs/car.png"
+    eval(losingDoor).src = "imgs/goat.jpg"
 }
 
 
@@ -67,6 +67,7 @@ function firstDoor() {
     if (clickCount === 0 && door1.src == "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/Door1.png") {
         //Place a car behind one of the three doors 
         //Randomly select 0, 1 or 2
+        console.log(door1.src)
         let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
         //Store the winning door in string format
         winningDoor = carDoorArray[randomCarDoor]
@@ -90,13 +91,11 @@ function firstDoor() {
             firstGoatDoor = goatDoorArray[0]
         }
         //Reveal the first door with a goat 
-        eval(firstGoatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
+        eval(firstGoatDoor).src = "imgs/goat.jpg"
         //Increase click count
         clickCount += 1
         //Now door 1 is the stay option 
         stayDoor = 'door1'
-        // Display 'stay' on this door
-
         //losingDoor is the switch option
         switchDoor = losingDoor
         console.log(`The switch door is: ${switchDoor}`)
@@ -215,7 +214,7 @@ function secondDoor() {
             firstGoatDoor = goatDoorArray[0]
         }
         //Reveal the first door with a goat 
-        eval(firstGoatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
+        eval(firstGoatDoor).src = "imgs/goat.jpg"
         //Increase click count
         clickCount += 1
         //Now door 1 is the stay option 
@@ -336,7 +335,7 @@ function thirdDoor() {
             firstGoatDoor = goatDoorArray[0]
         }
         //Reveal the first door with a goat 
-        eval(firstGoatDoor).src = "file:///Users/LuaiGhazi/Desktop/montyHall/imgs/goat.jpg"
+        eval(firstGoatDoor).src = "imgs/goat.jpg"
         //Increase click count
         clickCount += 1
         //Now door 1 is the stay option 
