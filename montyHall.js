@@ -41,6 +41,8 @@ let totalAttemptsArr = []
 let winningDoor = 0
 let losingDoor = 0
 let stayDoor = 0
+let firstGoatDoor = 0
+let randomFirstReveal = 0
 
 let carDoorArray = ['door1', 'door2', 'door3']
 let goatDoorArray = ['door1', 'door2', 'door3']
@@ -59,379 +61,115 @@ function changePicture() {
     eval(losingDoor).src = "imgs/goat.jpg"
 }
 
-
-
-// Click on the first door should always result 
-// in a goat appear 
-function firstDoor() {
-    if (clickCount === 0) {
-        //Place a car behind one of the three doors 
-        //Randomly select 0, 1 or 2
-        console.log(door1.src)
-        let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
-        //Store the winning door in string format
-        winningDoor = carDoorArray[randomCarDoor]
-        console.log(`The winning door is: ${winningDoor}`)
-        //Assign the two goats behind the other two doors 
-        //Renove the winning door from the goatDoorArray 
-        goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
-        console.log(`The goat door array is: ${goatDoorArray}`)
-        //Reveal the first goat door. 
-        //Randomly select 0 or 1
-        let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
-        let firstGoatDoor = goatDoorArray[randomFirstReveal]
-        console.log(`The first reveal is: ${firstGoatDoor}`)
-        //Store the remaining door that contains a goat 
-        goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
-        losingDoor = goatDoorArray[0]
-        console.log(`The losing door is: ${firstGoatDoor}`)
-        //If it is door1 is the first goatDoor then reveal the other door 
-        if ('door1' === firstGoatDoor) {
-            losingDoor = firstGoatDoor
-            firstGoatDoor = goatDoorArray[0]
-        }
-        //Reveal the first door with a goat 
-        eval(firstGoatDoor).src = "imgs/goat.jpg"
-        //Increase click count
-        clickCount += 1
-        //Now door 1 is the stay option 
-        stayDoor = 'door1'
-        //losingDoor is the switch option
-        switchDoor = losingDoor
-        console.log(`The switch door is: ${switchDoor}`)
-    } else if (clickCount === 1 && winningDoor === 'door1') {
-        if (stayDoor === 'door1') {
-            changePicture()
-            clickCount += 1
-            stayWinCount += 1
-            totalStayCount += 1
-            winPercentStayCount = stayWinCount / totalStayCount
-            lossPercentStayCount = 1 - winPercentStayCount
-            stayWinDisplay.textContent = stayWinCount
-            stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
-            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
-            console.log(lossPercentStayCount * 100)
-            stayAttempts.push(totalStayCount)
-            myChart.data.datasets[0].data.push(winPercentStayCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You won by staying!')
-        } else {
-            changePicture()
-            console.log('hit the route')
-            clickCount += 1
-            switchWinCount += 1
-            totalSwitchCount += 1
-            winPercentSwitchCount = switchWinCount / totalSwitchCount
-            lossPercentSwitchCount = 1 - winPercentSwitchCount
-            switchWinDisplay.textContent = switchWinCount
-            switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = winPercentSwitchCount
-            switchAttempts.push(totalSwitchCount)
-            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
-            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
-            myChart.data.datasets[1].data.push(winPercentSwitchCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You won by swtiching!')
-        }
-
-    } else if (clickCount === 1 && winningDoor !== "door1") {
-        if (stayDoor === 'door1') {
-            changePicture()
-            clickCount += 1
-            stayLossCount += 1
-            totalStayCount += 1
-            winPercentStayCount = stayWinCount / totalStayCount
-            lossPercentStayCount = 1 - winPercentStayCount
-            console.log(totalStayCount)
-            stayLossDisplay.textContent = stayLossCount
-            stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
-            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
-            stayAttempts.push(totalStayCount)
-            myChart.data.datasets[0].data.push(winPercentStayCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You lost by staying!')
-        } else {
-            changePicture()
-            clickCount += 1
-            switchLossCount += 1
-            totalSwitchCount += 1
-            winPercentSwitchCount = switchWinCount / totalSwitchCount
-            lossPercentSwitchCount = 1 - winPercentSwitchCount
-            switchLossDisplay.textContent = switchLossCount
-            switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
-            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
-            switchAttempts.push(totalSwitchCount)
-            myChart.data.datasets[1].data.push(winPercentSwitchCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You lost by swtiching!')
-        }
-    }
+function placePrizes() {
+    //Place a car behind one of the three doors 
+    //Randomly select 0, 1 or 2
+    let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
+    //Store the winning door in string format
+    winningDoor = carDoorArray[randomCarDoor]
+    //Assign the two goats behind the other two doors 
+    //Renove the winning door from the goatDoorArray 
+    goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
+    //Reveal the first goat door. 
+    //Randomly select 0 or 1
+    let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
+    firstGoatDoor = goatDoorArray[randomFirstReveal]
+    //Store the remaining door that contains a goat 
+    goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
+    losingDoor = goatDoorArray[0]
 }
 
-function secondDoor() {
-    if (clickCount === 0) {
-        //Place a car behind one of the three doors 
-        //Randomly select 0, 1 or 2
-        let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
-        //Store the winning door in string format
-        winningDoor = carDoorArray[randomCarDoor]
-        console.log(`The winning door is: ${winningDoor}`)
-        //Assign the two goats behind the other two doors 
-        //Renove the winning door from the goatDoorArray 
-        goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
-        console.log(`The goat door array is: ${goatDoorArray}`)
-        //Reveal the first goat door. 
-        //Randomly select 0 or 1
-        let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
-        let firstGoatDoor = goatDoorArray[randomFirstReveal]
-        console.log(`The first reveal is: ${firstGoatDoor}`)
-        //Store the remaining door that contains a goat 
-        goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
-        losingDoor = goatDoorArray[0]
-        console.log(`The losing door is: ${firstGoatDoor}`)
-        //If it is door1 is the first goatDoor then reveal the other door 
-        if ('door2' === firstGoatDoor) {
-            losingDoor = firstGoatDoor
-            firstGoatDoor = goatDoorArray[0]
-        }
-        //Reveal the first door with a goat 
-        eval(firstGoatDoor).src = "imgs/goat.jpg"
-        //Increase click count
-        clickCount += 1
-        //Now door 1 is the stay option 
-        stayDoor = 'door2'
-        //losingDoor is the switch option
-        switchDoor = losingDoor
-        console.log(`The switch door is: ${switchDoor}`)
-    } else if (clickCount === 1 && winningDoor === 'door2') {
-        if (stayDoor === 'door2') {
-            changePicture()
-            clickCount += 1
-            stayWinCount += 1
-            totalStayCount += 1
-            winPercentStayCount = stayWinCount / totalStayCount
-            lossPercentStayCount = 1 - winPercentStayCount
-            stayWinDisplay.textContent = stayWinCount
-            stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
-            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
-            stayAttempts.push(totalStayCount)
-            myChart.data.datasets[0].data.push(winPercentStayCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You won by staying!')
-        } else {
-            changePicture()
-            console.log('hit the route')
-            clickCount += 1
-            switchWinCount += 1
-            totalSwitchCount += 1
-            winPercentSwitchCount = switchWinCount / totalSwitchCount
-            lossPercentSwitchCount = 1 - winPercentSwitchCount
-            switchWinDisplay.textContent = switchWinCount
-            switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
-            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
-            switchAttempts.push(totalSwitchCount)
-            myChart.data.datasets[1].data.push(winPercentSwitchCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You won by swtiching!')
-        }
-
-    } else if (clickCount === 1 && winningDoor !== "door2") {
-        if (stayDoor === 'door2') {
-            changePicture()
-            clickCount += 1
-            stayLossCount += 1
-            totalStayCount += 1
-            winPercentStayCount = stayWinCount / totalStayCount
-            lossPercentStayCount = 1 - winPercentStayCount
-            console.log(totalStayCount)
-            stayLossDisplay.textContent = stayLossCount
-            stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
-            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
-            stayAttempts.push(totalStayCount)
-            myChart.data.datasets[0].data.push(winPercentStayCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You lost by staying!')
-        } else {
-            changePicture()
-            clickCount += 1
-            switchLossCount += 1
-            totalSwitchCount += 1
-            winPercentSwitchCount = switchWinCount / totalSwitchCount
-            lossPercentSwitchCount = 1 - winPercentSwitchCount
-            switchLossDisplay.textContent = switchLossCount
-            switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
-            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
-            switchAttempts.push(totalSwitchCount)
-            myChart.data.datasets[1].data.push(winPercentSwitchCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You lost by swtiching!')
-        }
-    }
+function doorReveal() {
+    //Reveal the first door with a goat 
+    eval(firstGoatDoor).src = "imgs/goat.jpg"
+    //Increase click count
+    clickCount += 1
 }
 
-function thirdDoor() {
-    if (clickCount === 0) {
-        //Place a car behind one of the three doors 
-        //Randomly select 0, 1 or 2
-        let randomCarDoor = [Math.floor(Math.random() * carDoorArray.length)];
-        //Store the winning door in string format
-        winningDoor = carDoorArray[randomCarDoor]
-        console.log(`The winning door is: ${winningDoor}`)
-        //Assign the two goats behind the other two doors 
-        //Renove the winning door from the goatDoorArray 
-        goatDoorArray.splice(goatDoorArray.indexOf(winningDoor), 1)
-        console.log(`The goat door array is: ${goatDoorArray}`)
-        //Reveal the first goat door. 
-        //Randomly select 0 or 1
-        let randomFirstReveal = [Math.floor(Math.random() * goatDoorArray.length)]
-        let firstGoatDoor = goatDoorArray[randomFirstReveal]
-        console.log(`The first reveal is: ${firstGoatDoor}`)
-        //Store the remaining door that contains a goat 
-        goatDoorArray.splice(goatDoorArray.indexOf(firstGoatDoor), 1)
-        losingDoor = goatDoorArray[0]
-        console.log(`The losing door is: ${firstGoatDoor}`)
-        //If it is door1 is the first goatDoor then reveal the other door 
-        if ('door3' === firstGoatDoor) {
-            losingDoor = firstGoatDoor
-            firstGoatDoor = goatDoorArray[0]
-        }
-        //Reveal the first door with a goat 
-        eval(firstGoatDoor).src = "imgs/goat.jpg"
-        //Increase click count
-        clickCount += 1
-        //Now door 1 is the stay option 
-        stayDoor = 'door3'
-        //losingDoor is the switch option
-        switchDoor = losingDoor
-        console.log(`The switch door is: ${switchDoor}`)
-        //Show Stay on Door1 
-
-    } else if (clickCount === 1 && winningDoor === 'door3') {
-        if (stayDoor === 'door3') {
-            changePicture()
-            clickCount += 1
-            stayWinCount += 1
-            totalStayCount += 1
-            winPercentStayCount = stayWinCount / totalStayCount
-            lossPercentStayCount = 1 - winPercentStayCount
-            stayWinDisplay.textContent = stayWinCount
-            stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
-            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
-            stayAttempts.push(totalStayCount)
-            myChart.data.datasets[0].data.push(winPercentStayCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You won by staying!')
-        } else {
-            changePicture()
-            console.log('hit the route')
-            clickCount += 1
-            switchWinCount += 1
-            totalSwitchCount += 1
-            winPercentSwitchCount = switchWinCount / totalSwitchCount
-            lossPercentSwitchCount = 1 - winPercentSwitchCount
-            switchWinDisplay.textContent = switchWinCount
-            switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
-            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
-            switchAttempts.push(totalSwitchCount)
-            myChart.data.datasets[1].data.push(winPercentSwitchCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You won by swtiching!')
-        }
-
-    } else if (clickCount === 1 && winningDoor !== "door3") {
-        if (stayDoor === 'door3') {
-            changePicture()
-            clickCount += 1
-            stayLossCount += 1
-            totalStayCount += 1
-            winPercentStayCount = stayWinCount / totalStayCount
-            lossPercentStayCount = 1 - winPercentStayCount
-            console.log(totalStayCount)
-            stayLossDisplay.textContent = stayLossCount
-            stayTotalDisplay.textContent = totalStayCount
-            stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
-            stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
-            stayAttempts.push(totalStayCount)
-            myChart.data.datasets[0].data.push(winPercentStayCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You lost by staying!')
-        } else {
-            changePicture()
-            clickCount += 1
-            switchLossCount += 1
-            totalSwitchCount += 1
-            winPercentSwitchCount = switchWinCount / totalSwitchCount
-            lossPercentSwitchCount = 1 - winPercentSwitchCount
-            switchLossDisplay.textContent = switchLossCount
-            switchTotalDisplay.textContent = totalSwitchCount
-            switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
-            switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
-            switchAttempts.push(totalSwitchCount)
-            myChart.data.datasets[1].data.push(winPercentSwitchCount)
-            totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
-            if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
-                totalAttemptsArr.push(totalAttempts)
-            }
-            myChart.update()
-            alert('You lost by swtiching!')
-        }
+function stayWin() {
+    changePicture()
+    clickCount += 1
+    stayWinCount += 1
+    totalStayCount += 1
+    winPercentStayCount = stayWinCount / totalStayCount
+    lossPercentStayCount = 1 - winPercentStayCount
+    stayWinDisplay.textContent = stayWinCount
+    stayTotalDisplay.textContent = totalStayCount
+    stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+    stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
+    stayAttempts.push(totalStayCount)
+    myChart.data.datasets[0].data.push(winPercentStayCount)
+    totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+    if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+        totalAttemptsArr.push(totalAttempts)
     }
+    myChart.update()
+    alert('You won by staying!')
 }
-resetButton.addEventListener('click', reset)
 
+function switchWin() {
+    changePicture()
+    clickCount += 1
+    switchWinCount += 1
+    totalSwitchCount += 1
+    winPercentSwitchCount = switchWinCount / totalSwitchCount
+    lossPercentSwitchCount = 1 - winPercentSwitchCount
+    switchWinDisplay.textContent = switchWinCount
+    switchTotalDisplay.textContent = totalSwitchCount
+    switchPercentDisplay.textContent = winPercentSwitchCount
+    switchAttempts.push(totalSwitchCount)
+    switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+    switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
+    myChart.data.datasets[1].data.push(winPercentSwitchCount)
+    totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+    if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+        totalAttemptsArr.push(totalAttempts)
+    }
+    myChart.update()
+    alert('You won by swtiching!')
+}
+
+function stayLoss() {
+    changePicture()
+    clickCount += 1
+    stayLossCount += 1
+    totalStayCount += 1
+    winPercentStayCount = stayWinCount / totalStayCount
+    lossPercentStayCount = 1 - winPercentStayCount
+    stayLossDisplay.textContent = stayLossCount
+    stayTotalDisplay.textContent = totalStayCount
+    stayPercentDisplay.textContent = Math.round(winPercentStayCount * 100)
+    stayLossPercentDisplay.textContent = Math.round(lossPercentStayCount * 100)
+    stayAttempts.push(totalStayCount)
+    myChart.data.datasets[0].data.push(winPercentStayCount)
+    totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+    if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+        totalAttemptsArr.push(totalAttempts)
+    }
+    myChart.update()
+    alert('You lost by staying!')
+}
+
+function switchLoss() {
+    changePicture()
+    clickCount += 1
+    switchLossCount += 1
+    totalSwitchCount += 1
+    winPercentSwitchCount = switchWinCount / totalSwitchCount
+    lossPercentSwitchCount = 1 - winPercentSwitchCount
+    switchLossDisplay.textContent = switchLossCount
+    switchTotalDisplay.textContent = totalSwitchCount
+    switchPercentDisplay.textContent = Math.round(winPercentSwitchCount * 100)
+    switchLossPercentDisplay.textContent = Math.round(lossPercentSwitchCount * 100)
+    switchAttempts.push(totalSwitchCount)
+    myChart.data.datasets[1].data.push(winPercentSwitchCount)
+    totalAttempts = Math.max(stayAttempts.length, switchAttempts.length)
+    if (totalAttempts !== totalAttemptsArr[totalAttemptsArr.length - 1]) {
+        totalAttemptsArr.push(totalAttempts)
+    }
+    myChart.update()
+    alert('You lost by swtiching!')
+}
 
 function reset() {
     clickCount = 0;
@@ -442,6 +180,92 @@ function reset() {
     goatDoorArray = ['door1', 'door2', 'door3']
     switchDoorArray = ['door1', 'door2', 'door3']
 }
+
+
+// Click on the first door should always result 
+// in a goat appear 
+function firstDoor() {
+    if (clickCount === 0) {
+        placePrizes()
+        //If it is door1 is the first goatDoor then reveal the other door 
+        if ('door1' === firstGoatDoor) {
+            losingDoor = firstGoatDoor
+            firstGoatDoor = goatDoorArray[0]
+        }
+        doorReveal()
+        //Now door 1 is the stay option 
+        stayDoor = 'door1'
+    } else if (clickCount === 1 && winningDoor === 'door1') {
+        if (stayDoor === 'door1') {
+            stayWin()
+        } else {
+            switchWin()
+        }
+    } else if (clickCount === 1 && winningDoor !== "door1") {
+        if (stayDoor === 'door1') {
+            stayLoss()
+        } else {
+            switchLoss()
+        }
+    }
+}
+
+function secondDoor() {
+    if (clickCount === 0) {
+        placePrizes()
+        //If it is door1 is the first goatDoor then reveal the other door 
+        if ('door2' === firstGoatDoor) {
+            losingDoor = firstGoatDoor
+            firstGoatDoor = goatDoorArray[0]
+        }
+        doorReveal()
+        //Now door 1 is the stay option 
+        stayDoor = 'door2'
+    } else if (clickCount === 1 && winningDoor === 'door2') {
+        if (stayDoor === 'door2') {
+            stayWin()
+        } else {
+            switchWin()
+        }
+    } else if (clickCount === 1 && winningDoor !== "door2") {
+        if (stayDoor === 'door2') {
+            stayLoss()
+        } else {
+            switchLoss()
+        }
+    }
+}
+
+function thirdDoor() {
+    if (clickCount === 0) {
+        placePrizes()
+        //If it is door1 is the first goatDoor then reveal the other door 
+        if ('door3' === firstGoatDoor) {
+            losingDoor = firstGoatDoor
+            firstGoatDoor = goatDoorArray[0]
+        }
+        doorReveal()
+        //Now door 1 is the stay option 
+        stayDoor = 'door3'
+    } else if (clickCount === 1 && winningDoor === 'door3') {
+        if (stayDoor === 'door3') {
+            stayWin()
+        } else {
+            switchWin()
+        }
+    } else if (clickCount === 1 && winningDoor !== "door3") {
+        if (stayDoor === 'door3') {
+            stayLoss()
+        } else {
+            switchLoss()
+        }
+    }
+}
+
+
+
+resetButton.addEventListener('click', reset)
+
 
 
 let ctx = document.getElementById('myChart');
